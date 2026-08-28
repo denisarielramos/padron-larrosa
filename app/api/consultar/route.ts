@@ -62,6 +62,14 @@ export async function POST(req: NextRequest) {
   })
 
   if (rpcError) {
+    console.error("[api/consultar] Error RPC buscar_padron", {
+      message: rpcError.message,
+      details: rpcError.details,
+      hint: rpcError.hint,
+      code: rpcError.code,
+      termino: t,
+    })
+
     return NextResponse.json(
       { error: "Error al consultar el padrón electoral." },
       { status: 500 }
