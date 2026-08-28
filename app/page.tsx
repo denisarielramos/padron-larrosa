@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { Search } from "lucide-react"
 import { ConsultaForm } from "@/components/consulta-form"
 
 export const metadata = {
@@ -9,26 +10,25 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#f0f0f0] flex flex-col">
-      {/* Red accent strip */}
-      <div className="w-full bg-primary h-1.5" aria-hidden="true" />
+    <div className="min-h-screen bg-[#F6F5F2] flex flex-col">
+      <main className="flex-1 flex flex-col items-center px-4 py-8 md:py-12">
+        <div className="w-full max-w-2xl flex flex-col items-center gap-5">
 
-      {/* Main content */}
-      <main className="flex-1 flex flex-col items-center px-4 py-6 md:py-10">
-        <div className="w-full max-w-lg flex flex-col gap-4">
-
-          {/* Title block */}
-          <div className="text-center flex flex-col gap-1 px-2">
-            <h1 className="text-2xl md:text-3xl font-extrabold text-primary leading-tight text-balance tracking-tight">
+          {/* Header */}
+          <div className="text-center flex flex-col gap-1.5 px-2">
+            <h1 className="text-2xl md:text-4xl font-bold text-[#7A1F23] leading-tight tracking-tight text-balance">
               Consulta tu lugar de votación
             </h1>
-            <p className="text-sm md:text-base font-semibold text-foreground/60 text-balance uppercase tracking-widest">
-              Elecciones Generales - San Lorenzo 2026
+            <p className="text-sm md:text-base text-foreground/70 text-balance">
+              Elecciones Generales · San Lorenzo 2026
+            </p>
+            <p className="text-xs md:text-sm font-semibold text-[#D6A22F] tracking-wide">
+              Lista 1 · Opción 4
             </p>
           </div>
 
-          {/* Campaign flyer */}
-          <div className="w-full overflow-hidden rounded-2xl shadow-lg">
+          {/* Flyer */}
+          <div className="w-[78%] sm:w-[65%] md:w-full md:max-w-[360px] overflow-hidden rounded-xl shadow-sm">
             <Image
               src="/flyer-larrosa.png"
               alt="Ariel Ojeda Intendente y Rodrigo Larrosa Concejal - Lista 1 Opción 4"
@@ -39,45 +39,26 @@ export default function HomePage() {
             />
           </div>
 
-          {/* Search panel card */}
-          <div className="rounded-2xl bg-white border border-border/60 shadow-lg overflow-hidden">
-            {/* Panel header */}
-            <div className="bg-primary px-6 py-4 flex items-center gap-3">
-              <div className="bg-white/20 rounded-full p-2 shrink-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.35-4.35" />
-                </svg>
+          {/* Search card */}
+          <div className="w-full max-w-md rounded-2xl bg-white border border-black/[0.06] shadow-md">
+            <div className="px-6 py-7 sm:px-8 sm:py-8 flex flex-col gap-6">
+              <div className="flex flex-col items-center gap-2 text-center">
+                <div className="w-10 h-10 rounded-full bg-[#7A1F23]/10 flex items-center justify-center">
+                  <Search className="w-4 h-4 text-[#7A1F23]" />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <h2 className="text-lg font-bold text-foreground">Consultá tu lugar de votación</h2>
+                  <p className="text-sm text-muted-foreground">Ingresá tu cédula, nombre o apellido</p>
+                </div>
               </div>
-              <div className="flex flex-col gap-0">
-                <span className="text-white font-bold text-base leading-tight tracking-wide">
-                  Padrón Electoral San Lorenzo 2026
-                </span>
-              </div>
-            </div>
 
-            {/* Divider accent */}
-            <div className="h-px bg-gradient-to-r from-primary/30 via-primary/10 to-transparent" aria-hidden="true" />
-
-            {/* Form body */}
-            <div className="px-6 py-7">
               <ConsultaForm />
             </div>
           </div>
 
           {/* Footer */}
-          <p className="text-center text-xs text-muted-foreground pb-4 tracking-wide">
-            Sistema Electoral ANR &mdash; Uso oficial
+          <p className="text-center text-xs text-muted-foreground/70 pb-4">
+            Consulta de padrón electoral · San Lorenzo 2026
           </p>
         </div>
       </main>
