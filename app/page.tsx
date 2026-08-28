@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { ConsultaForm } from "@/components/consulta-form"
 
 export const metadata = {
@@ -25,18 +24,6 @@ export default function HomePage() {
             <p className="text-sm md:text-base font-semibold text-foreground/60 text-balance uppercase tracking-widest">
               Elecciones Generales - San Lorenzo 2026
             </p>
-          </div>
-
-          {/* Campaign flyer */}
-          <div className="w-full overflow-hidden rounded-2xl border border-border/60 shadow-lg">
-            <Image
-              src="/flyer-chechito-generales.jpeg"
-              alt="Flyer de José Chechito López, Lista 1, opción 3 para concejal"
-              width={1600}
-              height={667}
-              className="h-auto w-full"
-              priority
-            />
           </div>
 
           {/* Search panel card */}

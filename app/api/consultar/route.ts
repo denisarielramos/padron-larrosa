@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { supabase } from "@/lib/supabase"
+import { supabaseServer } from "@/lib/supabase-server"
 
 // Simple in-memory rate limiter: max 10 requests per IP per minute
 const rateLimit = new Map<string, { count: number; resetAt: number }>()
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { data: results, error: rpcError } = await supabase.rpc("buscar_padron", {
+  const { data: results, error: rpcError } = await supabaseServer.rpc("buscar_padron", {
     termino_input: t,
   })
 

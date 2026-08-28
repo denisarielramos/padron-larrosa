@@ -14,11 +14,11 @@ type FormState =
   | { type: "results"; list: PadronResult[]; termino: string }
   | { type: "detail"; data: PadronResult; termino: string }
 
-async function registrar(termino: string, persona: PadronResult) {
+async function registrar(termino: string, ci: string) {
   await fetch("/api/registrar-consulta", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ termino, persona }),
+    body: JSON.stringify({ termino, ci }),
   })
 }
 
@@ -69,7 +69,7 @@ export function ConsultaForm() {
       if (list.length === 1) {
         if (!registeredRef.current.has(list[0].ci)) {
           registeredRef.current.add(list[0].ci)
-          await registrar(t, list[0])
+          await registrar(t, list[0].ci)
         }
         setState({ type: "detail", data: list[0], termino: t })
       } else {
@@ -90,7 +90,7 @@ export function ConsultaForm() {
   async function handleSelect(persona: PadronResult, termino: string) {
     if (!registeredRef.current.has(persona.ci)) {
       registeredRef.current.add(persona.ci)
-      await registrar(termino, persona)
+      await registrar(termino, persona.ci)
     }
     setState({ type: "detail", data: persona, termino })
   }
