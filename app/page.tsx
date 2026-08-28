@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { ConsultaForm } from "@/components/consulta-form"
 
 export const metadata = {
@@ -24,6 +25,18 @@ export default function HomePage() {
             <p className="text-sm md:text-base font-semibold text-foreground/60 text-balance uppercase tracking-widest">
               Elecciones Generales - San Lorenzo 2026
             </p>
+          </div>
+
+          {/* Campaign flyer */}
+          <div className="w-full overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/flyer-larrosa.png"
+              alt="Ariel Ojeda Intendente y Rodrigo Larrosa Concejal - Lista 1 Opción 4"
+              width={1120}
+              height={1600}
+              className="h-auto w-full"
+              priority
+            />
           </div>
 
           {/* Search panel card */}

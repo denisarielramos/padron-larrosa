@@ -88,7 +88,7 @@ begin
     where not exists (
       select 1
       from unnest(esc_tokens) as tok
-      where (p.nombre || ' ' || p.apellido) not ilike '%' || tok || '%' escape '\'
+      where (coalesce(p.nombre, '') || ' ' || coalesce(p.apellido, '')) not ilike '%' || tok || '%' escape '\'
     )
     order by p.apellido, p.nombre
     limit 50;
