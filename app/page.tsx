@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#F6F5F2] flex flex-col">
       <main className="flex-1 flex flex-col items-center px-4 py-6 md:py-10">
-        <div className="w-full max-w-4xl flex flex-col gap-6 md:gap-8">
+        <div className="w-full max-w-xl flex flex-col gap-6">
 
           {/* Header */}
           <div className="text-center flex flex-col gap-1.5 px-2">
@@ -21,35 +21,28 @@ export default function HomePage() {
             <p className="text-sm md:text-base text-foreground/70 text-balance">
               Elecciones Generales 2026
             </p>
-            <p className="text-xs md:text-sm font-semibold text-[#D6A22F] tracking-wide">
-              Lista 1 · Opción 4
-            </p>
           </div>
 
-          {/* Form (principal) + flyer (secundario) */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-[1fr_320px] gap-6 md:gap-10 items-start">
+          {/* Flyer */}
+          <div className="w-full overflow-hidden rounded-2xl shadow-md bg-white">
+            <Image
+              src="/flyer-larrosa.png"
+              alt="Ariel Ojeda Intendente y Rodrigo Larrosa Concejal - Lista 1 Opción 4"
+              width={1120}
+              height={1600}
+              className="h-auto w-full"
+              priority
+            />
+          </div>
 
-            {/* Search card */}
-            <div className="w-full rounded-2xl bg-white border border-black/[0.06] shadow-md px-6 py-6 sm:px-7 sm:py-7 flex flex-col gap-5">
-              <div className="flex flex-col gap-1">
-                <h2 className="text-lg font-bold text-foreground">Buscá tu lugar de votación</h2>
-                <p className="text-sm text-muted-foreground">Ingresá tu cédula, nombre o apellido</p>
-              </div>
-
-              <ConsultaForm />
+          {/* Search card */}
+          <div className="w-full rounded-2xl bg-white border border-black/[0.06] shadow-md px-6 py-6 sm:px-7 sm:py-7 flex flex-col gap-5">
+            <div className="flex flex-col gap-1">
+              <h2 className="text-lg font-bold text-foreground">Buscá tu lugar de votación</h2>
+              <p className="text-sm text-muted-foreground">Ingresá tu cédula, nombre o apellido</p>
             </div>
 
-            {/* Flyer */}
-            <div className="w-[62%] sm:w-[42%] md:w-full md:max-w-[320px] mx-auto md:mx-0 overflow-hidden rounded-xl shadow-sm">
-              <Image
-                src="/flyer-larrosa.png"
-                alt="Ariel Ojeda Intendente y Rodrigo Larrosa Concejal - Lista 1 Opción 4"
-                width={1120}
-                height={1600}
-                className="h-auto w-full"
-                priority
-              />
-            </div>
+            <ConsultaForm />
           </div>
 
           {/* Footer */}
