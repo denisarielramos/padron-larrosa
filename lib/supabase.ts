@@ -5,16 +5,17 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+// Devuelto por la funcion RPC buscar_padron() — ver
+// supabase/migrations/20260828010000_padron_larrosa_consulta.sql
 export type PadronResult = {
   ci: string
   nombre: string
   apellido: string
-  nombre_completo: string
-  direccion: string
-  seccional: string
-  orden: string
-  mesa: string
-  local_votacion: string
+  nombre_completo?: string | null
+  seccional: string | null
+  orden: string | null
+  mesa: string | null
+  local_votacion: string | null
 }
 
 export type PadronConsulta = {
