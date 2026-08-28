@@ -16,7 +16,9 @@
 -- Ejecutar en el SQL Editor del proyecto Supabase de Larrosa.
 
 -- ── Funcion de busqueda (solo callable desde el backend) ─────────────────
--- Devuelve unicamente los 7 campos necesarios (sin direccion, sin created_at).
+-- Devuelve unicamente los 6 campos que la consulta publica muestra: nombre,
+-- apellido, ci, local de votacion, mesa y orden. Sin direccion, sin
+-- seccional, sin created_at.
 -- SECURITY DEFINER: corre con los privilegios de quien crea la funcion, no
 -- con los del rol que la invoca. Asi no depende de (ni modifica) el grant
 -- de SELECT que hoy tiene `anon` sobre `padron`.
@@ -29,7 +31,6 @@ returns table (
   ci text,
   nombre text,
   apellido text,
-  seccional text,
   local_votacion text,
   mesa text,
   orden text
@@ -55,7 +56,7 @@ begin
 
     if ci_num is not null then
       return query
-        select p.ci::text, p.nombre, p.apellido, p.seccional, p.local_votacion,
+        select p.ci::text, p.nombre, p.apellido, p.local_votacion,
                p.mesa::text, p.orden::text
         from public.padron p
         where p.ci = ci_num
@@ -81,7 +82,7 @@ begin
   end if;
 
   return query
-    select p.ci::text, p.nombre, p.apellido, p.seccional, p.local_votacion,
+    select p.ci::text, p.nombre, p.apellido, p.local_votacion,
            p.mesa::text, p.orden::text
     from public.padron p
     where not exists (
@@ -111,6 +112,9 @@ create table public.padron_admins (
 alter table public.padron_admins enable row level security;
 
 -- ── Registro de consultas (exclusivo de padron-larrosa) ──────────────────
+-- Guarda `seccional` para las metricas/filtros del panel admin, aunque
+-- buscar_padron ya no la devuelva al publico: /api/registrar-consulta la
+-- obtiene aparte, con una lectura directa a `padron` via service_role.
 create table public.padron_consultas (
   id bigint generated always as identity primary key,
   termino_buscado text not null,

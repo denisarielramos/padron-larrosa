@@ -40,6 +40,14 @@ export async function POST(req: NextRequest) {
   }
 
   const t = termino.trim()
+
+  if (t.length > 100) {
+    return NextResponse.json(
+      { error: "El término de búsqueda es demasiado largo." },
+      { status: 400 }
+    )
+  }
+
   const isNumeric = /^\d+$/.test(t)
 
   if (!isNumeric && t.length < 3) {

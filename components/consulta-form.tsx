@@ -35,6 +35,10 @@ export function ConsultaForm() {
       setTerminoError("El término de búsqueda es requerido.")
       return false
     }
+    if (t.length > 100) {
+      setTerminoError("El término de búsqueda es demasiado largo.")
+      return false
+    }
     const isNumeric = /^\d+$/.test(t)
     if (!isNumeric && t.length < 3) {
       setTerminoError("Ingrese al menos 3 caracteres para buscar por nombre o apellido.")
