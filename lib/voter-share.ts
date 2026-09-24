@@ -1,46 +1,7 @@
 import type { PadronResult } from "@/lib/supabase"
 
-// ── WhatsApp ────────────────────────────────────────────────────────────────
-
-/**
- * Normaliza un celular paraguayo a formato internacional 595XXXXXXXXX.
- * Acepta: 0981123456, 981123456, +595981123456, 595981123456 (con espacios,
- * guiones o paréntesis). Devuelve null si el número no es válido.
- */
-export function normalizarCelularPY(input: string): string | null {
-  const raw = input.trim()
-  if (!raw || !/^\+?[\d\s\-()]+$/.test(raw)) return null
-
-  let digits = raw.replace(/\D/g, "")
-  if (digits.startsWith("595")) digits = digits.slice(3)
-  if (digits.startsWith("0")) digits = digits.slice(1)
-
-  // Celulares paraguayos: 9 dígitos que empiezan con 9 (ej. 981 123 456)
-  if (!/^9\d{8}$/.test(digits)) return null
-  return `595${digits}`
-}
-
 function nombreDe(d: PadronResult): string {
   return d.nombre_completo ?? `${d.nombre} ${d.apellido}`
-}
-
-export function mensajeWhatsApp(d: PadronResult): string {
-  return [
-    "Hola, estos son tus datos de votación:",
-    "",
-    `NOMBRE: ${nombreDe(d)}`,
-    `CI: ${d.ci}`,
-    "",
-    "LOCAL DE VOTACIÓN:",
-    d.local_votacion ?? "—",
-    "",
-    `MESA: ${d.mesa ?? "—"}`,
-    `ORDEN: ${d.orden ?? "—"}`,
-  ].join("\n")
-}
-
-export function urlWhatsApp(numero: string, d: PadronResult): string {
-  return `https://wa.me/${numero}?text=${encodeURIComponent(mensajeWhatsApp(d))}`
 }
 
 // ── Imagen para compartir ───────────────────────────────────────────────────
