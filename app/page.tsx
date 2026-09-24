@@ -27,10 +27,10 @@ export default function HomePage() {
             <Image
               src="/flyer-larrosa.png"
               alt="Flyer de campaña: Lista 1 Opción 4, Ariel Ojeda Intendente y Rodrigo Larrosa Concejal"
-              width={1120}
-              height={1600}
+              width={2048}
+              height={1412}
               sizes="(max-width: 640px) 100vw, 576px"
-              className="mx-auto w-full h-auto max-h-[58svh] sm:max-h-[70vh] object-contain"
+              className="block w-full h-auto object-contain"
               priority
             />
           </div>
