@@ -104,9 +104,9 @@ export function ConsultaForm() {
     const d = state.data
     const nombre = d.nombre_completo ?? `${d.nombre} ${d.apellido}`
     return (
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3.5 sm:gap-5">
         {/* Success header */}
-        <div className="flex flex-col items-center gap-2 py-1">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2 sm:py-1">
           <div className="w-9 h-9 rounded-full bg-[#7A1F23]/10 flex items-center justify-center">
             <CheckCircle2 className="w-5 h-5 text-[#7A1F23]" />
           </div>
@@ -119,7 +119,7 @@ export function ConsultaForm() {
         </div>
 
         {/* Local de votacion — el dato mas importante */}
-        <div className="rounded-2xl bg-gradient-to-br from-[#7A1F23] to-[#5C1519] px-5 py-5 text-white shadow-sm">
+        <div className="rounded-2xl bg-gradient-to-br from-[#7A1F23] to-[#5C1519] px-4 py-4 sm:px-5 sm:py-5 text-white shadow-sm">
           <div className="flex items-center gap-1.5 text-[#E8C46B] text-[11px] font-bold uppercase tracking-wider mb-1.5">
             <MapPin className="w-3.5 h-3.5" />
             Local de votación
@@ -128,7 +128,7 @@ export function ConsultaForm() {
         </div>
 
         {/* Detalles secundarios */}
-        <div className="grid grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           <ResultCard icon={<CreditCard className="w-4 h-4" />} label="CI" value={d.ci} />
           <ResultCard icon={<Vote className="w-4 h-4" />} label="Mesa" value={d.mesa} />
           <ResultCard icon={<ListOrdered className="w-4 h-4" />} label="Orden" value={d.orden} />
@@ -137,7 +137,7 @@ export function ConsultaForm() {
         <Button
           variant="outline"
           size="lg"
-          className="w-full h-12 text-sm font-semibold border-2 hover:border-[#7A1F23] hover:text-[#7A1F23] transition-colors mt-1"
+          className="w-full h-12 text-sm font-semibold border-2 hover:border-[#7A1F23] hover:text-[#7A1F23] transition-colors sm:mt-1"
           onClick={handleReset}
         >
           Realizar otra consulta
@@ -150,7 +150,7 @@ export function ConsultaForm() {
   if (state.type === "results") {
     const { list, termino: t } = state
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <div className="text-center flex flex-col gap-1">
           <p className="text-sm font-bold text-foreground">
             Se encontraron{" "}
@@ -270,7 +270,7 @@ function ResultCard({
   value: string | null | undefined
 }) {
   return (
-    <div className="flex flex-col items-center gap-1 rounded-xl border border-border bg-[#FAFAF9] px-3 py-3 text-center">
+    <div className="flex flex-col items-center gap-1 rounded-xl border border-border bg-[#FAFAF9] px-2 py-2.5 sm:px-3 sm:py-3 text-center">
       <span className="text-muted-foreground">{icon}</span>
       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">
         {label}
